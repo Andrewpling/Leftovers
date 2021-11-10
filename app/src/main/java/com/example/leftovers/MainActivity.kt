@@ -36,7 +36,7 @@ import java.lang.reflect.Type
 class MainActivity : ComponentActivity() {
 
     private var placeholderRestaurants = (1..10).map { restaurantNum ->
-        Restaurant("Longhorn", "Germantown", restaurantNum, restaurantNum % 3 == 0)
+        Restaurant(1, "...", "Longhorn", "Germantown", 10, true)
     }
 
     @ExperimentalFoundationApi

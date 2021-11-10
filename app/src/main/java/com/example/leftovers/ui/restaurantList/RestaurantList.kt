@@ -75,7 +75,7 @@ fun RestaurantList(
                 Spacer(modifier = Modifier.padding(bottom = 5.dp))
                 Row() {
                     Checkbox(
-                        checked = restaurant.donationReady,
+                        checked = restaurant.is_ready,
                         onCheckedChange = { donationReadyChange(restaurant) },
                         modifier = Modifier.padding(end = 5.dp)
                     )
