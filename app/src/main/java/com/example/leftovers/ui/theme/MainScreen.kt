@@ -9,8 +9,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.compose.rememberNavController
 import com.example.leftovers.model.Restaurant
+import com.example.leftovers.ui.nav.LeftoversNavGraph
 import com.example.leftovers.ui.restaurantList.RestaurantList
+import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -143,6 +146,7 @@ fun MainScreen(
 //    donationReadyChange: (Restaurant) -> Unit,
 //    onFilter: (String) -> Unit
 ) {
+    val nav = rememberNavController()
     val scaffoldState= rememberScaffoldState()
     val scope = rememberCoroutineScope()
     Scaffold(
@@ -150,6 +154,7 @@ fun MainScreen(
             TopBar(scaffoldState, scope )
         }
     ) {
+        LeftoversNavGraph(nav)
 //        LazyColumn() {
 //            itemsIndexed(restaurants) { idx, restaurant ->
 //                RestaurantList(idx, restaurant, onDelete, donationReadyChange)
