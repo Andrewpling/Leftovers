@@ -29,10 +29,9 @@ class RestaurantsMemoryRepository: IRestaurantRepository {
 //            _songs = listOf(song) + _songs
 //        }
 
-        override suspend fun toggleAwesome(restaurant: Restaurant) {
+        override suspend fun toggleReady(restaurant: Restaurant) {
             val newRestaurant = restaurant.copy(is_ready = !restaurant.is_ready)
             val idx = _restaurants.indexOf(restaurant)
             _restaurants = _restaurants.subList(0, idx) + listOf(newRestaurant) + _restaurants.subList(idx+1, _restaurants.size)
         }
     }
-}
