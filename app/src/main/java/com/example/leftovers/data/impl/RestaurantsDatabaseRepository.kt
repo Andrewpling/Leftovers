@@ -21,14 +21,14 @@ class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
     override suspend fun getRestaurants(): List<Restaurant> {
         return db.restaurantDao().getRestaurants()
     }
-//
-//    override suspend fun deleteRestaurant(idx: Int) {
-//        return db.restaurantDao().del
-//    }
 
-//    override suspend fun addRestaurant(restaurant: Restaurant) {
-//        TODO("Not yet implemented")
-//    }
+    override suspend fun deleteRestaurant(restaurant: Restaurant) {
+        return db.restaurantDao().deleteRestaurant(restaurant)
+    }
+
+    override suspend fun addRestaurant(restaurant: Restaurant) {
+        return db.restaurantDao().addRestaurant(restaurant)
+    }
 
     override suspend fun toggleReady(restaurant: Restaurant) {
         val newRestaurant = restaurant.copy(is_ready = !restaurant.is_ready)
