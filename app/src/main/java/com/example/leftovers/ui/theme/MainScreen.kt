@@ -1,7 +1,10 @@
 package com.example.leftovers.ui.theme
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
@@ -9,10 +12,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.ui.nav.LeftoversNavGraph
-import com.example.leftovers.ui.restaurantList.RestaurantList
+import com.example.leftovers.ui.nav.Routes
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -137,6 +143,7 @@ import kotlinx.coroutines.launch
 //
 //
 
+@ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @Composable
 fun MainScreen(
@@ -149,7 +156,24 @@ fun MainScreen(
     val nav = rememberNavController()
     val scaffoldState= rememberScaffoldState()
     val scope = rememberCoroutineScope()
+
     Scaffold(
+        scaffoldState = scaffoldState,
+        drawerContent = {
+            Text("Todos", modifier = Modifier.padding(16.dp))
+            Column(modifier = Modifier.fillMaxWidth()){
+                Text(
+                    text = "+ Add Todos",
+                    modifier = Modifier
+                        .clickable {
+                            nav.navigate(Routes.NewRestaurant.route) {
+                                popUpTo(Routes.RestaurantList.route)
+                            }
+                        }
+                        .padding(16.dp)
+                )
+            }
+        },
         topBar = {
             TopBar(scaffoldState, scope )
         }
