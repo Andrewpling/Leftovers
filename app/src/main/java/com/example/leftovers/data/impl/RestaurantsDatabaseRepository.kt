@@ -7,16 +7,12 @@ import com.example.leftovers.data.RestaurantsDatabase
 import com.example.leftovers.model.Restaurant
 
 class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
-    private val db: RestaurantsDatabase
+    private val db: RestaurantsDatabase = Room.databaseBuilder(
+        app,
+        RestaurantsDatabase::class.java,
+        "restaurants.db"
+    ).fallbackToDestructiveMigration().build()
     private var _restaurants: List<Restaurant> = listOf()
-
-    init {
-        db = Room.databaseBuilder(
-            app,
-            RestaurantsDatabase::class.java,
-            "restaurants.db"
-        ).fallbackToDestructiveMigration().build()
-    }
 
     override suspend fun getRestaurants(): List<Restaurant> {
         return db.restaurantDao().getRestaurants()
