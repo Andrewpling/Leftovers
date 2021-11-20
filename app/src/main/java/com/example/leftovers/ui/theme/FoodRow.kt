@@ -55,15 +55,15 @@ fun FoodRow(
                     modifier = Modifier.padding(5.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Artist:", modifier = Modifier.weight(1.0f))
-                    Text(restaurant.location, modifier = Modifier.weight(2.0f))
+                    Text("Location: ${restaurant.location}", modifier = Modifier.weight(1.0f))
+                    //Text(restaurant.location, modifier = Modifier.weight(2f))
                 }
                 Row(
                     modifier = Modifier.padding(5.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Track:", modifier = Modifier.weight(1.0f))
-                    Text(restaurant.distance.toString(), modifier = Modifier.weight(2.0f))
+                    Text("Distance: ${restaurant.distance.toString()}", modifier = Modifier.weight(2.0f))
+                    //Text(restaurant.distance.toString(), modifier = Modifier.weight(4f))
                 }
             }
             Column(
@@ -76,7 +76,7 @@ fun FoodRow(
                 Spacer(modifier = Modifier.padding(bottom=5.dp))
                 Row() {
                     Checkbox(checked = restaurant.is_ready, onCheckedChange = { isReadyChange(restaurant) }, modifier = Modifier.padding(end=5.dp))
-                    Text("Is Awesome")
+                    Text("Is Ready?")
                 }
             }
         }

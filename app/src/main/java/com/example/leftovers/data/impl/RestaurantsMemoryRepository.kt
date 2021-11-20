@@ -10,7 +10,7 @@ class RestaurantsMemoryRepository: IRestaurantRepository {
 
     init {
         _restaurants = (0..20).map { i ->
-            Restaurant(i, "path", "name", "location", 5, true)
+            Restaurant(i, "path", "name", "location", 5,  true)
         }
     }
 

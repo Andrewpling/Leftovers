@@ -16,6 +16,7 @@ import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.material.Icon
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -26,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import com.example.leftovers.model.Restaurant
-import com.example.leftovers.ui.restaurantList.RestaurantList
 import com.example.leftovers.ui.theme.LeftoversTheme
 import com.example.leftovers.ui.theme.MainScreen
 //import com.example.leftovers.ui.theme.MainScreen
@@ -35,10 +35,7 @@ import java.lang.reflect.Type
 
 class MainActivity : ComponentActivity() {
 
-    private var placeholderRestaurants = (1..10).map { restaurantNum ->
-        Restaurant(1, "...", "Longhorn", "Germantown", 10, true)
-    }
-
+    @ExperimentalComposeUiApi
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +67,7 @@ class MainActivity : ComponentActivity() {
 //    }
 //}
 
+@ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @Preview(showBackground = true)
 @Composable

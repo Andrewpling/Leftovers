@@ -8,6 +8,7 @@ interface RestaurantsDao {
     @Query("SELECT id, img_path, name, location, distance, is_ready FROM restaurant")
     suspend fun getRestaurants(): List<Restaurant>
 
+
     @Insert
     suspend fun addRestaurant(restaurant: Restaurant)
 

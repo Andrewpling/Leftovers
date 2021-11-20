@@ -12,7 +12,8 @@ data class Restaurant (
     val name: String,
     val location: String,
     val distance: Int,
-    @ColumnInfo(name = "is_ready")
+   // val type: String,
+    //@ColumnInfo(name = "is_ready")
     val is_ready: Boolean
     ){
 }
