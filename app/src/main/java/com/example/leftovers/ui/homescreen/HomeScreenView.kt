@@ -11,8 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.leftovers.model.Restaurant
+import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.nav.LeftoversNavGraph
 import com.example.leftovers.ui.nav.Routes
 import com.example.leftovers.ui.theme.PrimaryTextColor
@@ -22,10 +24,10 @@ import java.time.format.TextStyle
 @ExperimentalComposeUiApi
 @Composable
 fun HomeScreenView(
-//    vm: NewRestaurantViewModel = viewModel(),
+  //  vm: LandingPageViewModel = viewModel(),
+    nav: NavHostController
 //    onAddRestaurant: (Restaurant) -> Unit
 ) {
-    val nav = rememberNavController()
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -43,21 +45,25 @@ fun HomeScreenView(
         ){
             Button(
                 onClick = {
-                    nav.navigate(Routes.NewRestaurant.route) {
+                    //vm.setUserMode("restaurant")
+                    nav.navigate(Routes.LandingPage.route) {
                         popUpTo(Routes.HomeScreen.route)
                     }
+
                 }
             ) {
-                Text("New Restaurant")
+                Text("Restaurant")
             }
             Button(
                 onClick = {
-                    nav.navigate(Routes.NewRestaurant.route) {
+                    //vm.setUserMode("foodBank")
+                    nav.navigate(Routes.LandingPage.route) {
                         popUpTo(Routes.HomeScreen.route)
                     }
+
                 }
             ) {
-                Text("New Restaurant")
+                Text("Food Bank")
             }
         }
     }

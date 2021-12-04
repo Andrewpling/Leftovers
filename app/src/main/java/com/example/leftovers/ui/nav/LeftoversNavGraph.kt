@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.leftovers.ui.homescreen.HomeScreenView
+import com.example.leftovers.ui.landingpage.LandingPageView
 import com.example.leftovers.ui.newrestaurant.NewRestaurantView
 import com.example.leftovers.ui.newrestaurant.NewRestaurantViewModel
 import com.example.leftovers.ui.restaurantList.RestaurantListView
@@ -28,7 +29,7 @@ fun LeftoversNavGraph(
         startDestination = Routes.HomeScreen.route,
     ){
         composable(Routes.HomeScreen.route){
-            HomeScreenView()
+            HomeScreenView(navController)
         }
         composable(Routes.RestaurantList.route) {
             RestaurantListScreen(vm)
@@ -42,6 +43,9 @@ fun LeftoversNavGraph(
 //                    navController.navigate(Routes.RestaurantList.route)
                 }
             )
+        }
+        composable(Routes.LandingPage.route){
+            LandingPageView()
         }
     }
 }
