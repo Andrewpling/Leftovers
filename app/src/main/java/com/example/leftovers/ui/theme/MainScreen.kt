@@ -160,14 +160,24 @@ fun MainScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            Text("Todos", modifier = Modifier.padding(16.dp))
+            Text("Leftovers", modifier = Modifier.padding(16.dp))
             Column(modifier = Modifier.fillMaxWidth()){
                 Text(
-                    text = "+ Add Todos",
+                    text = "Restaurant List",
+                    modifier = Modifier
+                        .clickable {
+                            nav.navigate(Routes.RestaurantList.route) {
+                                popUpTo(Routes.HomeScreen.route)
+                            }
+                        }
+                        .padding(16.dp)
+                )
+                Text(
+                    text = "Add Restaurants",
                     modifier = Modifier
                         .clickable {
                             nav.navigate(Routes.NewRestaurant.route) {
-                                popUpTo(Routes.RestaurantList.route)
+                                popUpTo(Routes.HomeScreen.route)
                             }
                         }
                         .padding(16.dp)

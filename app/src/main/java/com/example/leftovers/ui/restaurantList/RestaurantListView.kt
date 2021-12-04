@@ -4,8 +4,7 @@ import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -41,25 +40,51 @@ fun RestaurantListView(
             modifier = Modifier
             //         .alpha(if(waiting) 0.2f else 1.0f)
         ) {
-            //   SearchBar(onFilter = onFilter)
-            val config = LocalConfiguration.current
-            if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                LazyColumn {
-//                    itemsIndexed(restaurants) { restaurant ->
-//                        (restaurant,
-//                            //confirmViewModel.showConfirmDelete(onConfirm={ onDelete(song) })
-//                         isReadyChange)
-//                    }
-
-                    itemsIndexed(restaurants) { id, restaurant ->
+            Row() {
+                //   SearchBar(onFilter = onFilter)
+                val config = LocalConfiguration.current
+                LazyVerticalGrid(cells = GridCells.Fixed(2), contentPadding = PaddingValues(8.dp), content = {
+                    itemsIndexed(restaurants) {idx, restaurant ->
                         (
-                            FoodRow(restaurant, isReadyChange)
-                        )
+                                FoodRow(restaurant, isReadyChange)
+                                )
                     }
-                }
+                })
             }
-        }
-    }
+
+//                val config = LocalConfiguration.current
+//                LazyColumn(contentPadding = PaddingValues(8.dp), content = {
+//                    itemsIndexed(restaurants) { id, restaurant ->
+//                        (
+//                                FoodRow(restaurant, isReadyChange)
+//                                )
+//                    }
+//                })
+            //if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+//                    LazyColumn(
+//                        horizontalAlignment = Alignment.Start
+//                    ){
+////                    itemsIndexed(restaurants) { restaurant ->
+////                        (restaurant,
+////                            //confirmViewModel.showConfirmDelete(onConfirm={ onDelete(song) })
+////                         isReadyChange)
+////                    }
+//                    LazyRow(
+//                        contentPadding = PaddingValues(8.dp)
+//                    ){
+//                        itemsIndexed(restaurants) { id, restaurant ->
+//                            (
+////                                    if (id % 2 == 0)
+//                                        FoodRow(restaurant, isReadyChange)
+////                                    )
+//                                    )
+//                        }
+//                    }
+//                    }
+//                }
+//           // }
+//        }
+//    }
 //             else {
 //                //LandscapeView(selectedSong?.name) {
 //                    LazyColumn {
@@ -134,4 +159,6 @@ fun RestaurantListView(
 //            }
 //        }
 //    }
+        }
+    }
 }
