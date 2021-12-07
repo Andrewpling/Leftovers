@@ -4,8 +4,8 @@ import com.example.leftovers.model.Restaurant
 
 interface IRestaurantRepository {
     suspend fun getRestaurants(): List<Restaurant>
-    suspend fun deleteRestaurant(restaurant: Restaurant)
     suspend fun addRestaurant(restaurant: Restaurant)
     suspend fun toggleReady(restaurant: Restaurant)
+    suspend fun updateRestaurant(restaurant: Restaurant)
     //suspend fun filter(search: String)
 }

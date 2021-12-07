@@ -46,7 +46,7 @@ fun HomeScreenView(
             Button(
                 onClick = {
                     //vm.setUserMode("restaurant")
-                    nav.navigate(Routes.LandingPage.route) {
+                    nav.navigate(Routes.RestaurantLandingPage.route) {
                         popUpTo(Routes.HomeScreen.route)
                     }
 
@@ -57,7 +57,7 @@ fun HomeScreenView(
             Button(
                 onClick = {
                     //vm.setUserMode("foodBank")
-                    nav.navigate(Routes.LandingPage.route) {
+                    nav.navigate(Routes.FoodBankLandingPage.route) {
                         popUpTo(Routes.HomeScreen.route)
                     }
 

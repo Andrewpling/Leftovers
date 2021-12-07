@@ -11,7 +11,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.leftovers.ui.homescreen.HomeScreenView
-import com.example.leftovers.ui.landingpage.LandingPageView
+import com.example.leftovers.ui.landingpage.FoodBankLandingPageView
+import com.example.leftovers.ui.landingpage.RestaurantLandingPageView
+//import com.example.leftovers.ui.landingpage.LandingPageView
 import com.example.leftovers.ui.newrestaurant.NewRestaurantView
 import com.example.leftovers.ui.newrestaurant.NewRestaurantViewModel
 import com.example.leftovers.ui.restaurantList.RestaurantListView
@@ -44,8 +46,11 @@ fun LeftoversNavGraph(
                 }
             )
         }
-        composable(Routes.LandingPage.route){
-            LandingPageView()
+        composable(Routes.FoodBankLandingPage.route){
+            FoodBankLandingPageView()
+        }
+        composable(Routes.RestaurantLandingPage.route){
+            RestaurantLandingPageView()
         }
     }
 }

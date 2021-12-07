@@ -18,12 +18,6 @@ class RestaurantsMemoryRepository: IRestaurantRepository {
         return _restaurants
     }
 
-    override suspend fun deleteRestaurant(restaurant: Restaurant) {
-        delay(5000)
-        val idx = _restaurants.indexOf(restaurant)
-        _restaurants = _restaurants.subList(0, idx) + _restaurants.subList(idx+1, _restaurants.size)
-    }
-
     override suspend fun addRestaurant(restaurant: Restaurant) {
     delay(5000)
         _restaurants = listOf(restaurant) + _restaurants
@@ -33,5 +27,9 @@ class RestaurantsMemoryRepository: IRestaurantRepository {
         val newRestaurant = restaurant.copy(is_ready = !restaurant.is_ready)
         val idx = _restaurants.indexOf(restaurant)
         _restaurants = _restaurants.subList(0, idx) + listOf(newRestaurant) + _restaurants.subList(idx+1, _restaurants.size)
+    }
+
+    override suspend fun updateRestaurant(restaurant: Restaurant) {
+        TODO("Not yet implemented")
     }
 }

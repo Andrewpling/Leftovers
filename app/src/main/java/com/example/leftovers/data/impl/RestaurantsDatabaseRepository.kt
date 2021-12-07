@@ -7,20 +7,22 @@ import com.example.leftovers.data.RestaurantsDatabase
 import com.example.leftovers.model.Restaurant
 
 class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
-    private val db: RestaurantsDatabase = Room.databaseBuilder(
-        app,
-        RestaurantsDatabase::class.java,
-        "restaurants.db"
-    ).fallbackToDestructiveMigration().build()
+    private val db: RestaurantsDatabase
+
+    init{
+        db = Room.databaseBuilder(
+            app,
+            RestaurantsDatabase::class.java,
+            "restaurants.db"
+        ).fallbackToDestructiveMigration().build()
+    }
+
     private var _restaurants: List<Restaurant> = listOf()
 
     override suspend fun getRestaurants(): List<Restaurant> {
         return db.restaurantDao().getRestaurants()
     }
 
-    override suspend fun deleteRestaurant(restaurant: Restaurant) {
-        return db.restaurantDao().deleteRestaurant(restaurant)
-    }
 
     override suspend fun addRestaurant(restaurant: Restaurant) {
         return db.restaurantDao().addRestaurant(restaurant)
@@ -31,13 +33,9 @@ class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
         db.restaurantDao().updateRestaurant(newRestaurant)
     }
 
-//    override suspend fun filter(search: String) {
-//        TODO("Not yet implemented")
-//    }
-
-//    override suspend fun updateRestaurant(restaurant: Restaurant) {
-//        TODO("Not yet implemented")
-//    }
+    override suspend fun updateRestaurant(restaurant: Restaurant) {
+        TODO("Not yet implemented")
+    }
 
 
 }
