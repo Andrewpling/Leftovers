@@ -15,7 +15,7 @@ fun NewRestaurantView(
     onAddRestaurant: (Restaurant) -> Unit
 ) {
     Button(onClick = {
-        val restaurant = vm.makeRestaurant()
+        //val restaurant = vm.makeRestaurant()
         //onAddRestaurant(restaurant)
     }) {
         Text(text = "hi")

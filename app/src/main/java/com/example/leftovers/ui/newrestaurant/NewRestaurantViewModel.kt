@@ -51,9 +51,9 @@ class NewRestaurantViewModel : ViewModel() {
         _isReady.value = is_ready
     }
 
-    fun makeRestaurant(): Restaurant {
-        return Restaurant(5, "...", "Hi", " ", 1, true)
-    }
+//    fun makeRestaurant(): Restaurant {
+//        return Restaurant(5, "...", "Hi", " ", 1, true)
+//    }
 
     /**
      * Validate the input fields and will throw an exception if not valid.

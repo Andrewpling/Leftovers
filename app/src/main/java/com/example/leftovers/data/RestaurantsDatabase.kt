@@ -5,7 +5,7 @@ import com.example.leftovers.model.Restaurant
 
 @Dao
 interface RestaurantsDao {
-    @Query("SELECT id, img_path, name, location, distance, is_ready FROM restaurant")
+    @Query("SELECT id, name, location, distance, picUrl, isAccepting FROM restaurant")
     suspend fun getRestaurants(): List<Restaurant>
 
     @Insert
@@ -17,7 +17,7 @@ interface RestaurantsDao {
 
 }
 
-@Database(entities = [Restaurant::class], version = 1, exportSchema = false)
+@Database(entities = [Restaurant::class], version = 2 , exportSchema = false)
 abstract class RestaurantsDatabase: RoomDatabase(){
     abstract fun restaurantDao(): RestaurantsDao
 }

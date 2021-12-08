@@ -75,7 +75,7 @@ fun FoodRow(
 ////                }
                 //Spacer(modifier = Modifier.padding(bottom=5.dp))
                 Column() {
-                    Checkbox(checked = restaurant.is_ready, onCheckedChange = { isReadyChange(restaurant) }, modifier = Modifier.padding(end=5.dp))
+                    Checkbox(checked = restaurant.isAccepting, onCheckedChange = { isReadyChange(restaurant) }, modifier = Modifier.padding(end=5.dp))
                     Text("Is Ready?")
                 }
             }
