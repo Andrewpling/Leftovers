@@ -21,6 +21,15 @@ fun FoodBankLandingPageView(
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        if(vm.userMode.value == 1){
+            Text("Restaurant")
+        }
+        else if(vm.userMode.value == 2){
+            Text("Food Bank")
+        }
+        else if(vm.userMode.value == 0){
+            Text("ERROR")
+        }
         Image(painter = painterResource(id = R.mipmap.foodforthought_foreground), contentDescription = "Placeholder", modifier = Modifier.size(256.dp))
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically

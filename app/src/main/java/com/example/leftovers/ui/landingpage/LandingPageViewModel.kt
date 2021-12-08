@@ -22,19 +22,26 @@ class LandingPageViewModel(app: Application) : AndroidViewModel(app){
     private val _selectedFood: MutableState<FoodBank?>
     val selectedFood: State<FoodBank?>
 
+    private val _userMode: MutableState<Int>
+    val userMode: State<Int>
+
+
+
     //private val _repository: IRestaurantRepository =
     //TODO: Finish this ^^^
 
 
     init{
         viewModelScope.launch {
-            _foodbanks.value = _repository.getBanks()
+           // _foodbanks.value = _repository.getBanks()
         }
         _selectedFood = mutableStateOf(null)
         selectedFood = _selectedFood
+        _userMode = mutableStateOf(0)
+        userMode = _userMode
     }
 
-    fun setUserMode(mode: String){
+    fun setUserMode(mode: Int){
         _userMode.value = mode
     }
 
