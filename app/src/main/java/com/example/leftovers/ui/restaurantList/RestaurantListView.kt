@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
@@ -25,6 +27,7 @@ import coil.compose.rememberImagePainter
 import com.example.leftovers.R
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.ui.nav.Routes
+import com.example.leftovers.ui.theme.SecondaryColor
 
 
 @ExperimentalFoundationApi
@@ -36,10 +39,10 @@ fun RestaurantListView(
     onSelectRest: (Restaurant) -> Unit,
     nav: NavHostController
 ) {
-
-
-
     Box(
+        modifier = Modifier.background(
+            color = SecondaryColor
+        ),
         contentAlignment = Alignment.Center,
     ) {
         Column(
