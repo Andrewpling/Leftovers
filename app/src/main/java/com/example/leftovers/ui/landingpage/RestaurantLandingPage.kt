@@ -26,15 +26,15 @@ fun RestaurantLandingPageView(
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if(vm.userMode.value == 1){
-            Text("Restaurant")
-        }
-        else if(vm.userMode.value == 2){
-            Text("Food Bank")
-        }
-        else{
-            Text("ERROR")
-        }
+//        if(vm.userMode.value == 1){
+//            Text("Restaurant")
+//        }
+//        else if(vm.userMode.value == 2){
+//            Text("Food Bank")
+//        }
+//        else{
+//            Text("ERROR")
+//        }
         Image(painter = painterResource(id = R.mipmap.tofu_foreground), contentDescription = "Placeholder", modifier = Modifier.size(256.dp))
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically

@@ -40,7 +40,7 @@ class FoodFetcher(
     override suspend fun fetchRest(): List<Restaurant> {
         return withContext(Dispatchers.IO) {
             val client = OkHttpClient()
-            val request = Request.Builder().url(URL).get().build()
+            val request = Request.Builder().url(URL2).get().build()
             val response = client.newCall(request).execute()
             val json = response.body?.string()
             if(json != null) {
