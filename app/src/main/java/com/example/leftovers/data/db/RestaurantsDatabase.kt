@@ -1,4 +1,4 @@
-package com.example.leftovers.data
+package com.example.leftovers.data.db
 
 import androidx.room.*
 import com.example.leftovers.model.Restaurant

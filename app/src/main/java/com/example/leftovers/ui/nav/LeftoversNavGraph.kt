@@ -1,7 +1,6 @@
 package com.example.leftovers.ui.nav
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -15,8 +14,8 @@ import com.example.leftovers.ui.landingpage.FoodBankLandingPageView
 import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.landingpage.RestaurantLandingPageView
 //import com.example.leftovers.ui.landingpage.LandingPageView
-import com.example.leftovers.ui.newrestaurant.NewRestaurantView
-import com.example.leftovers.ui.newrestaurant.NewRestaurantViewModel
+import com.example.leftovers.ui.profile.RestProfile
+import com.example.leftovers.ui.profile.ProfileViewModel
 import com.example.leftovers.ui.restaurantList.RestaurantListView
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 
@@ -39,9 +38,9 @@ fun LeftoversNavGraph(
             RestaurantListScreen(vm)
         }
         composable(Routes.NewRestaurant.route){
-            val newRestaurantViewModel: NewRestaurantViewModel = viewModel()
-            NewRestaurantView(
-                newRestaurantViewModel,
+            val profileViewModel: ProfileViewModel = viewModel()
+            RestProfile(
+                profileViewModel,
                 onAddRestaurant = { restaurant ->
                     vm.addRestaurant(restaurant)
 //                    navController.navigate(Routes.RestaurantList.route)
@@ -49,10 +48,10 @@ fun LeftoversNavGraph(
             )
         }
         composable(Routes.FoodBankLandingPage.route){
-            FoodBankLandingPageView(vm2)
+            FoodBankLandingPageView(vm2, navController)
         }
         composable(Routes.RestaurantLandingPage.route){
-            RestaurantLandingPageView(vm2)
+            RestaurantLandingPageView(vm2, navController)
         }
     }
 }

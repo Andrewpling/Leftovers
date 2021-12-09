@@ -1,14 +1,12 @@
-package com.example.leftovers.ui.newrestaurant
+package com.example.leftovers.ui.profile
 
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.leftovers.model.Restaurant
-import java.util.*
 
-class NewRestaurantViewModel : ViewModel() {
+class ProfileViewModel : ViewModel() {
     private val _id: MutableState<String> = mutableStateOf("")
     val id: State<String> = _id
 

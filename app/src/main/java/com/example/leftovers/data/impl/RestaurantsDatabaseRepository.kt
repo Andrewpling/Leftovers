@@ -3,7 +3,7 @@ package com.example.leftovers.data.impl
 import android.app.Application
 import androidx.room.Room
 import com.example.leftovers.data.IRestaurantRepository
-import com.example.leftovers.data.RestaurantsDatabase
+import com.example.leftovers.data.db.RestaurantsDatabase
 import com.example.leftovers.model.Restaurant
 
 class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
@@ -34,9 +34,6 @@ class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
         db.restaurantDao().updateRestaurant(newRestaurant)
     }
 
-    override suspend fun updateRestaurant(restaurant: Restaurant) {
-        TODO("Not yet implemented")
-    }
 
 
 }

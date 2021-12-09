@@ -1,11 +1,11 @@
-package com.example.leftovers.data.impl
+package com.example.leftovers.data.api
 
 import com.example.leftovers.data.IRestaurantRepository
-import com.example.leftovers.model.FoodBank
+import com.example.leftovers.data.impl.RestaurantsDatabaseRepository
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.network.IFoodFetcher
 
-class FoodApiComm (
+class RestaurantApiComm (
     private val db: RestaurantsDatabaseRepository,
     private val foodFetcher: IFoodFetcher
     ) : IRestaurantRepository {
@@ -24,10 +24,7 @@ class FoodApiComm (
     }
 
     override suspend fun toggleRestaurantReady(restaurant: Restaurant) {
-        TODO("Not yet implemented")
+        db.toggleRestaurantReady(restaurant)
     }
 
-    override suspend fun updateRestaurant(restaurant: Restaurant) {
-        TODO("Not yet implemented")
-    }
 }

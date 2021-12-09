@@ -6,5 +6,4 @@ interface IBankRepository {
     suspend fun getBanks(): List<FoodBank>
     suspend fun addBank(foodBank: FoodBank)
     suspend fun toggleBankReady(foodBank: FoodBank)
-    suspend fun updateBank(foodBank: FoodBank)
 }

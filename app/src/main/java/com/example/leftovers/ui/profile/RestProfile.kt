@@ -1,4 +1,4 @@
-package com.example.leftovers.ui.newrestaurant
+package com.example.leftovers.ui.profile
 
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -10,8 +10,8 @@ import com.example.leftovers.model.Restaurant
 
 @ExperimentalComposeUiApi
 @Composable
-fun NewRestaurantView(
-    vm: NewRestaurantViewModel = viewModel(),
+fun RestProfile(
+    vm: ProfileViewModel = viewModel(),
     onAddRestaurant: (Restaurant) -> Unit
 ) {
     Button(onClick = {

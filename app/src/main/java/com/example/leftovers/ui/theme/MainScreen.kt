@@ -19,9 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.leftovers.R
 import com.example.leftovers.model.Restaurant
+import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.nav.LeftoversNavGraph
 import com.example.leftovers.ui.nav.Routes
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
@@ -34,7 +36,7 @@ import kotlinx.coroutines.launch
 @ExperimentalFoundationApi
 @Composable
 fun MainScreen(
-
+    vm: LandingPageViewModel = viewModel()
 //    restaurants: List<Restaurant>,
 //    onDelete: (Restaurant) -> Unit,
 //    donationReadyChange: (Restaurant) -> Unit,
@@ -67,8 +69,21 @@ fun MainScreen(
                         text = "Home",
                         modifier = Modifier
                             .clickable {
-                                nav.navigate(Routes.RestaurantList.route) {
-                                    popUpTo(Routes.HomeScreen.route)
+                                if(vm.userMode.value == 0) {
+                                    nav.navigate(Routes.HomeScreen.route) {
+                                        popUpTo(Routes.HomeScreen.route)
+                                    }
+                                }
+                                else if(vm.userMode.value == 1){
+
+                                    nav.navigate(Routes.RestaurantLandingPage.route) {
+                                        popUpTo(Routes.RestaurantLandingPage.route)
+                                    }
+                                }
+                                else if(vm.userMode.value == 2){
+                                    nav.navigate(Routes.FoodBankLandingPage.route) {
+                                        popUpTo(Routes.FoodBankLandingPage.route)
+                                    }
                                 }
                             }
                             .padding(16.dp)

@@ -2,10 +2,10 @@ package com.example.leftovers.data.impl
 
 import android.app.Application
 import androidx.room.Room
-import com.example.leftovers.data.BanksDatabase
+import com.example.leftovers.data.db.BanksDatabase
 import com.example.leftovers.data.IBankRepository
 import com.example.leftovers.data.IRestaurantRepository
-import com.example.leftovers.data.RestaurantsDatabase
+import com.example.leftovers.data.db.RestaurantsDatabase
 import com.example.leftovers.model.FoodBank
 import com.example.leftovers.model.Restaurant
 
@@ -35,10 +35,6 @@ class BanksDatabaseRepository (app: Application) : IBankRepository {
     override suspend fun toggleBankReady(foodBank: FoodBank) {
         val newBank = foodBank.copy(isAccepting = !foodBank.isAccepting)
         db.banksDao().updateBank(newBank)
-    }
-
-    override suspend fun updateBank(foodBank: FoodBank) {
-        TODO("Not yet implemented")
     }
 
 

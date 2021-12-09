@@ -3,6 +3,7 @@ package com.example.leftovers.ui.landingpage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,11 +13,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.leftovers.R
+import com.example.leftovers.ui.nav.Routes
 
 @Composable
 fun FoodBankLandingPageView(
-    vm: LandingPageViewModel = viewModel()
+    vm: LandingPageViewModel = viewModel(),
+    nav: NavHostController
 ){
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
@@ -35,6 +39,16 @@ fun FoodBankLandingPageView(
             horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically
         ){
             Text("Welcome, Food for Thought", fontSize = 32.sp, modifier = Modifier.padding(16.dp), textAlign = TextAlign.Center)
+        }
+        Button(
+            onClick = {
+                vm.setUserMode(0)
+                nav.navigate(Routes.HomeScreen.route){
+                    popUpTo(Routes.HomeScreen.route)
+                }
+            }
+        ) {
+            Text("Logout")
         }
     }
 }
