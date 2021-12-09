@@ -28,25 +28,25 @@ fun RestProfile(
 
     val data = vm.selectedRest.value?.picUrl
 
-//    val painter = rememberImagePainter(
-//        data = ,
-//        builder = {
-//            placeholder(R.mipmap.sniper_monkey_foreground)
-//        }
-//    )
+    val painter = rememberImagePainter(
+        data = data,
+        builder = {
+            placeholder(R.mipmap.sniper_monkey_foreground)
+        }
+    )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ){
         Text("$data")
-//        Image(
-//            modifier = Modifier
-//                .size(256.dp),
-//            painter = painter,
-//            contentDescription = "Full picture",
-//            alignment = Alignment.Center
-//        )
+        Image(
+            modifier = Modifier
+                .size(256.dp),
+            painter = painter,
+            contentDescription = "Full picture",
+            alignment = Alignment.Center
+        )
     }
 
 }

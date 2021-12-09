@@ -1,6 +1,7 @@
 package com.example.leftovers.ui.restaurantList
 
 import android.content.res.Configuration
+import android.graphics.Paint
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -13,7 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,7 +25,7 @@ import coil.compose.rememberImagePainter
 import com.example.leftovers.R
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.ui.nav.Routes
-import com.example.leftovers.ui.theme.FoodRow
+
 
 @ExperimentalFoundationApi
 @Composable
@@ -56,14 +59,14 @@ fun RestaurantListView(
                                     placeholder(R.mipmap.sniper_monkey_foreground)
                                 }
                             )
-
-                            Box(
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Column(
-                                    modifier = Modifier.fillMaxWidth()
-                                ) {
-                                    Log.d("TAG", restaurant.name)
+//
+//                            Box(
+//                                contentAlignment = Alignment.Center,
+//                            ) {
+//                                Column(
+//                                    modifier = Modifier.fillMaxWidth()
+//                                ) {
+//                                    Log.d("TAG", restaurant.name)
                                     Card(
                                         shape = RoundedCornerShape(5.dp),
                                         elevation = 16.dp,
@@ -81,20 +84,37 @@ fun RestaurantListView(
                                             }
                                             .fillMaxWidth()
                                     ) {
-                                        Text(restaurant.name)
-                                        Image(
-                                            modifier = Modifier
-                                                .size(200.dp),
-                                            painter = painter,
-                                            contentDescription = "Full picture",
-                                            alignment = Alignment.Center
-                                        )
-                                        Spacer(modifier = Modifier.height(8.dp))
-                                        Text(restaurant.distance.toString())
+                                        Column(
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            modifier = Modifier.fillMaxWidth()
+                                        ) {
+                                            Text(
+                                                text = restaurant.name,
+                                                textAlign =  TextAlign.Center,
+                                                fontSize = 14.sp,
+                                                modifier = Modifier.padding(4.dp)
+                                            )
+                                            Spacer(modifier = Modifier.height(8.dp))
+                                            Image(
+                                                contentScale = ContentScale.FillBounds,
+                                                modifier = Modifier
+                                                    .size(125.dp),
+                                                painter = painter,
+                                                contentDescription = "Full picture",
+                                                alignment = Alignment.Center
+                                            )
+                                            Spacer(modifier = Modifier.height(8.dp))
+                                            Text(
+                                                text = "Distance: ${restaurant.distance.toString()}mi",
+                                                textAlign = TextAlign.Left,
+                                                fontSize = 12.sp
+                                            )
+                                        }
+
                                     }
                                 }
-                            }
-                        }
+//                            }
+//                        }
                     })
             }
         }
