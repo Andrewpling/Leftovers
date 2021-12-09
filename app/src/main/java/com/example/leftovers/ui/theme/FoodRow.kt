@@ -2,6 +2,7 @@ package com.example.leftovers.ui.theme
 
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,14 +12,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.leftovers.model.Restaurant
+import com.example.leftovers.ui.nav.Routes
+import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 
 @ExperimentalFoundationApi
 @Composable
 fun FoodRow(
+    vm: RestaurantListViewModel,
+    nav: NavHostController,
     restaurant: Restaurant,
     //onDelete: (Restaurant) -> Unit,
     isReadyChange: (Restaurant) -> Unit,
+    onSelectRest: (Restaurant) -> Unit
     //onSelectSong: (Restaurant) -> Unit
 ) {
     Log.d("TAG", restaurant.name)
@@ -28,6 +35,10 @@ fun FoodRow(
         modifier = Modifier
             .padding(start=16.dp, end=16.dp, top=5.dp, bottom=5.dp)
             .size(150.dp)
+            .clickable {
+                onSelectRest(restaurant)
+                nav.navigate(Routes.RestProfile.route)
+            }
     ) {
         Row(
             modifier = Modifier
@@ -75,7 +86,7 @@ fun FoodRow(
 ////                }
                 //Spacer(modifier = Modifier.padding(bottom=5.dp))
                 Column() {
-                    Checkbox(checked = restaurant.is_ready, onCheckedChange = { isReadyChange(restaurant) }, modifier = Modifier.padding(end=5.dp))
+                    Checkbox(checked = restaurant.isAccepting, onCheckedChange = { isReadyChange(restaurant) }, modifier = Modifier.padding(end=5.dp))
                     Text("Is Ready?")
                 }
             }

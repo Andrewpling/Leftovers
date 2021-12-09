@@ -25,6 +25,7 @@ import java.time.format.TextStyle
 @Composable
 fun HomeScreenView(
   //  vm: LandingPageViewModel = viewModel(),
+    vm: LandingPageViewModel = viewModel(),
     nav: NavHostController
 //    onAddRestaurant: (Restaurant) -> Unit
 ) {
@@ -46,6 +47,7 @@ fun HomeScreenView(
             Button(
                 onClick = {
                     //vm.setUserMode("restaurant")
+                    vm.setUserMode(1)
                     nav.navigate(Routes.RestaurantLandingPage.route) {
                         popUpTo(Routes.HomeScreen.route)
                     }
@@ -57,6 +59,7 @@ fun HomeScreenView(
             Button(
                 onClick = {
                     //vm.setUserMode("foodBank")
+                    vm.setUserMode(2)
                     nav.navigate(Routes.FoodBankLandingPage.route) {
                         popUpTo(Routes.HomeScreen.route)
                     }

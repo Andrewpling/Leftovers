@@ -5,11 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class FoodBank(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val name: String,
     val location: String,
     val distance: Int,
+    val picUrl: String,
     val isAccepting: Boolean
 ){
 }

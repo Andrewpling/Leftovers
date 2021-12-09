@@ -3,11 +3,12 @@ package com.example.leftovers.data.impl
 import android.app.Application
 import androidx.room.Room
 import com.example.leftovers.data.IRestaurantRepository
-import com.example.leftovers.data.RestaurantsDatabase
+import com.example.leftovers.data.db.RestaurantsDatabase
 import com.example.leftovers.model.Restaurant
 
 class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
     private val db: RestaurantsDatabase
+
 
     init{
         db = Room.databaseBuilder(
@@ -28,14 +29,11 @@ class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
         return db.restaurantDao().addRestaurant(restaurant)
     }
 
-    override suspend fun toggleReady(restaurant: Restaurant) {
-        val newRestaurant = restaurant.copy(is_ready = !restaurant.is_ready)
+    override suspend fun toggleRestaurantReady(restaurant: Restaurant) {
+        val newRestaurant = restaurant.copy(isAccepting = !restaurant.isAccepting)
         db.restaurantDao().updateRestaurant(newRestaurant)
     }
 
-    override suspend fun updateRestaurant(restaurant: Restaurant) {
-        TODO("Not yet implemented")
-    }
 
 
 }
