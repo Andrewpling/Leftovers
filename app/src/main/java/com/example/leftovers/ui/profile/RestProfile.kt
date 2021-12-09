@@ -2,9 +2,7 @@ package com.example.leftovers.ui.profile
 
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -39,14 +37,33 @@ fun RestProfile(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ){
-        Text("$data")
+        Text(
+            text = vm.selectedRest.value?.name.toString(),
+            modifier = Modifier.padding(16.dp)
+        )
         Image(
             modifier = Modifier
-                .size(256.dp),
+                .size(250.dp),
             painter = painter,
             contentDescription = "Full picture",
             alignment = Alignment.Center
         )
+        Text(
+            text = vm.selectedRest.value?.location.toString(),
+            modifier = Modifier.padding(16.dp)
+        )
+        Spacer(modifier = Modifier.size(20.dp))
+        Row(
+
+        ) {
+            Button(
+                onClick = {
+                    //Todo: Create message intent functionality
+                }
+            ) {
+                Text("Message")
+            }
+        }
     }
 
 }
