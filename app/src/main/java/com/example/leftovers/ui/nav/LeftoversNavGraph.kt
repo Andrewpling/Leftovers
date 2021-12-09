@@ -35,16 +35,15 @@ fun LeftoversNavGraph(
             HomeScreenView(vm2, navController)
         }
         composable(Routes.RestaurantList.route) {
-            RestaurantListScreen(vm)
+            RestaurantListScreen(vm, navController)
         }
-        composable(Routes.NewRestaurant.route){
-            val profileViewModel: ProfileViewModel = viewModel()
+        composable(Routes.RestProfile.route){
             RestProfile(
-                profileViewModel,
-                onAddRestaurant = { restaurant ->
-                    vm.addRestaurant(restaurant)
-//                    navController.navigate(Routes.RestaurantList.route)
-                }
+                vm
+//                onAddRestaurant = { restaurant ->
+//                    vm.addRestaurant(restaurant)
+////                    navController.navigate(Routes.RestaurantList.route)
+//                }
             )
         }
         composable(Routes.FoodBankLandingPage.route){
@@ -59,14 +58,17 @@ fun LeftoversNavGraph(
 @ExperimentalFoundationApi
 @Composable
 fun RestaurantListScreen(
-    vm: RestaurantListViewModel
+    vm: RestaurantListViewModel,
+    nav: NavHostController
 ){
     val restaurants by vm.restaurants
 
     RestaurantListView(
         vm,
         restaurants,
-        isReadyChange = vm::isReady
+        isReadyChange = vm::isReady,
+        onSelectRest = vm::selectRest,
+        nav
 
     )
 }
