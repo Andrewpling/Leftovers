@@ -1,6 +1,10 @@
 package com.example.leftovers.ui.profile
 
 
+import android.app.Application
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -21,8 +25,10 @@ import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 @ExperimentalComposeUiApi
 @Composable
 fun RestProfile(
-    vm: RestaurantListViewModel = viewModel()
+    vm: RestaurantListViewModel = viewModel(),
+    app: Context
 ) {
+
 
     val data = vm.selectedRest.value?.picUrl
 
@@ -59,6 +65,10 @@ fun RestProfile(
             Button(
                 onClick = {
                     //Todo: Create message intent functionality
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.setData(Uri.parse("smsto: 12345"))
+                    intent.putExtra("sms_body", "What's going on?")
+                    app.startActivity(intent)
                 }
             ) {
                 Text("Message")

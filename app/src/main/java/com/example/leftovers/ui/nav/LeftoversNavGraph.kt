@@ -1,9 +1,11 @@
 package com.example.leftovers.ui.nav
 
+import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -27,6 +29,7 @@ fun LeftoversNavGraph(
 ){
     val vm: RestaurantListViewModel = viewModel()
     val vm2: LandingPageViewModel = viewModel()
+    val ctx: Context = LocalContext.current
     NavHost(
         navController = navController,
         startDestination = Routes.HomeScreen.route,
@@ -39,7 +42,8 @@ fun LeftoversNavGraph(
         }
         composable(Routes.RestProfile.route){
             RestProfile(
-                vm
+                vm, ctx
+
 //                onAddRestaurant = { restaurant ->
 //                    vm.addRestaurant(restaurant)
 ////                    navController.navigate(Routes.RestaurantList.route)
