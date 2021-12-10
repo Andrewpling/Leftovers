@@ -49,28 +49,4 @@ class ProfileViewModel : ViewModel() {
         _isReady.value = is_ready
     }
 
-//    fun makeRestaurant(): Restaurant {
-//        return Restaurant(5, "...", "Hi", " ", 1, true)
-//    }
-
-    /**
-     * Validate the input fields and will throw an exception if not valid.
-     * Otherwise, a valid Song object is returned
-     */
-    /*
-    fun validate(): Song {
-        if(name.value.isEmpty()) {
-            throw Exception("Song name needed")
-        }
-        if(artist.value.isEmpty()) {
-            throw Exception("Artist name needed")
-        }
-        if(track.value.isEmpty()) {
-            throw Exception("Track number needed")
-        }
-        val trackInt = track.value.toInt()
-        return Song(UUID.randomUUID().toString(), name.value, artist.value, trackInt, isAwesome.value, null)
-    }
-
-     */
 }

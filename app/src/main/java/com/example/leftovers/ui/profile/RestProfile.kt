@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -62,9 +63,19 @@ fun RestProfile(
         Row(
 
         ) {
+//            Button(
+//                onClick = {
+//                    Toast.makeText(
+//                        app,
+//                        "HARDER",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            ){
+//                Text("Toast me, daddy")
+//            }
             Button(
                 onClick = {
-                    //Todo: Create message intent functionality
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.setData(Uri.parse("smsto: 12345"))
                     intent.putExtra("sms_body", "What's going on?")
