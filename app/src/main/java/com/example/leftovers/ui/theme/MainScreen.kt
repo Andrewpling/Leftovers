@@ -28,6 +28,7 @@ import com.example.leftovers.ui.nav.LeftoversNavGraph
 import com.example.leftovers.ui.nav.Routes
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -75,6 +76,11 @@ fun MainScreen(
                                     popUpTo(Routes.FoodBankLandingPage.route)
                                 }
                             }
+                            scope.launch {
+                                scaffoldState.drawerState.apply {
+                                    close()
+                                }
+                            }
                         })
                         .padding(start = 10.dp)
                 ){
@@ -100,6 +106,11 @@ fun MainScreen(
                                 else if (vm.userMode.value == 2) {
                                     nav.navigate(Routes.FoodBankLandingPage.route) {
                                         popUpTo(Routes.FoodBankLandingPage.route)
+                                    }
+                                }
+                                scope.launch {
+                                    scaffoldState.drawerState.apply {
+                                        close()
                                     }
                                 }
                             }
@@ -128,6 +139,11 @@ fun MainScreen(
                                     popUpTo(Routes.FoodBankLandingPage.route)
                                 }
                             }
+                            scope.launch {
+                                scaffoldState.drawerState.apply {
+                                    close()
+                                }
+                            }
                         })
                         .padding(start = 10.dp)
                 ){
@@ -143,6 +159,12 @@ fun MainScreen(
                             modifier = Modifier
                                 .clickable {
                                     nav.navigate(Routes.RestaurantList.route)
+                                    scope.launch {
+                                        scaffoldState.drawerState.apply {
+                                            delay(250)
+                                            close()
+                                        }
+                                    }
                                 }
                                 .padding(16.dp)
                         )
@@ -159,6 +181,12 @@ fun MainScreen(
                             modifier = Modifier
                                 .clickable {
                                     nav.navigate(Routes.RestaurantList.route)
+                                    scope.launch {
+                                        scaffoldState.drawerState.apply {
+                                            delay(250)
+                                            close()
+                                        }
+                                    }
                                 }
                                 .padding(16.dp)
                         )

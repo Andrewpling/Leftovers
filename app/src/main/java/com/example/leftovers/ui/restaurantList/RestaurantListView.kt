@@ -15,7 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
@@ -70,54 +72,103 @@ fun RestaurantListView(
 //                                    modifier = Modifier.fillMaxWidth()
 //                                ) {
 //                                    Log.d("TAG", restaurant.name)
-                                    Card(
-                                        shape = RoundedCornerShape(5.dp),
-                                        elevation = 16.dp,
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 8.dp,
-                                                end = 8.dp,
-                                                top = 5.dp,
-                                                bottom = 5.dp
-                                            )
-                                            .size(200.dp)
-                                            .clickable {
-                                                onSelectRest(restaurant)
-                                                nav.navigate(Routes.RestProfile.route)
-                                            }
-                                            .fillMaxWidth()
+                            if(!restaurant.isAccepting) {
+                                Card(
+                                    contentColor = Color.Gray,
+                                    backgroundColor = Color.Gray,
+                                    shape = RoundedCornerShape(5.dp),
+                                    elevation = 16.dp,
+                                    modifier = Modifier
+                                        .padding(
+                                            start = 8.dp,
+                                            end = 8.dp,
+                                            top = 5.dp,
+                                            bottom = 5.dp
+                                        )
+                                        .size(200.dp)
+//                                        .clickable {
+//                                            onSelectRest(restaurant)
+//                                            nav.navigate(Routes.RestProfile.route)
+//                                        }
+                                        .fillMaxWidth()
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.fillMaxWidth()
                                     ) {
-                                        Column(
-                                            horizontalAlignment = Alignment.CenterHorizontally,
-                                            modifier = Modifier.fillMaxWidth()
-                                        ) {
-                                            Text(
-                                                text = restaurant.name,
-                                                textAlign =  TextAlign.Center,
-                                                fontSize = 14.sp,
-                                                modifier = Modifier.padding(4.dp)
-                                            )
-                                            Spacer(modifier = Modifier.height(8.dp))
-                                            Image(
-                                                contentScale = ContentScale.FillBounds,
-                                                modifier = Modifier
-                                                    .size(125.dp),
-                                                painter = painter,
-                                                contentDescription = "Full picture",
-                                                alignment = Alignment.Center
-                                            )
-                                            Spacer(modifier = Modifier.height(8.dp))
-                                            Text(
-                                                text = "Distance: ${restaurant.distance.toString()}mi",
-                                                textAlign = TextAlign.Left,
-                                                fontSize = 12.sp
-                                            )
-                                        }
+                                        Text(
+                                            text = restaurant.name,
+                                            textAlign = TextAlign.Center,
+                                            fontSize = 14.sp,
+                                            modifier = Modifier.padding(4.dp)
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Image(
+                                            contentScale = ContentScale.FillBounds,
+                                            modifier = Modifier
+                                                .size(125.dp),
+                                            painter = painter,
+                                            contentDescription = "Full picture",
+                                            alignment = Alignment.Center,
+                                            colorFilter = ColorFilter.tint(Color.Gray, BlendMode.Darken)
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = "Distance: ${restaurant.distance.toString()}mi",
+                                            textAlign = TextAlign.Left,
+                                            fontSize = 12.sp
+                                        )
+                                    }
 
+                                }
+                            }
+                            else {
+                                Card(
+                                    shape = RoundedCornerShape(5.dp),
+                                    elevation = 16.dp,
+                                    modifier = Modifier
+                                        .padding(
+                                            start = 8.dp,
+                                            end = 8.dp,
+                                            top = 5.dp,
+                                            bottom = 5.dp
+                                        )
+                                        .size(200.dp)
+                                        .clickable {
+                                            onSelectRest(restaurant)
+                                            nav.navigate(Routes.RestProfile.route)
+                                        }
+                                        .fillMaxWidth()
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            text = restaurant.name,
+                                            textAlign = TextAlign.Center,
+                                            fontSize = 14.sp,
+                                            modifier = Modifier.padding(4.dp)
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Image(
+                                            contentScale = ContentScale.FillBounds,
+                                            modifier = Modifier
+                                                .size(125.dp),
+                                            painter = painter,
+                                            contentDescription = "Full picture",
+                                            alignment = Alignment.Center
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = "Distance: ${restaurant.distance.toString()}mi",
+                                            textAlign = TextAlign.Left,
+                                            fontSize = 12.sp
+                                        )
                                     }
                                 }
-//                            }
-//                        }
+                            }
+                        }
                     })
             }
         }
