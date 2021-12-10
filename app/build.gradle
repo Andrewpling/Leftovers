@@ -15,7 +15,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner "com.example.leftovers.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary true
@@ -81,7 +80,6 @@ dependencies {
     //need ?
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
     kapt "com.google.dagger:hilt-compiler:2.38.1"
-    implementation "com.google.dagger:hilt-android:2.38.1"
 
     //for testing
     implementation "com.google.dagger:hilt-android:2.38.1"
