@@ -1,4 +1,4 @@
-package com.example.leftovers.tests
+package com.example.leftovers
 
 import android.app.Application
 import com.example.leftovers.data.IRestaurantRepository
@@ -17,8 +17,8 @@ import dagger.hilt.testing.TestInstallIn
 )
 class TestModule {
 
-    @Provides
-    fun provideRestaurantRepository(): IRestaurantRepository {
-        return RestaurantMemoryRepository()
-    }
+   // @Provides
+//    fun provideRestaurantRepository(): IRestaurantRepository {
+//        return RestaurantMemoryRepository()
+//    }
 }

@@ -1,4 +1,4 @@
-package com.example.leftovers.tests
+package com.example.leftovers
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.viewmodel.compose.viewModel
