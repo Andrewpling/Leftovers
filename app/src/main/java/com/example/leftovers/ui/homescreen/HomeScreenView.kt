@@ -1,6 +1,7 @@
 package com.example.leftovers.ui.homescreen
 
 import android.graphics.Color
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -80,6 +81,8 @@ fun HomeScreenView(
             Button(
                 modifier = Modifier.padding(8.dp),
                 onClick = {
+
+
                     //vm.setUserMode("foodBank")
                     vm.setUserMode(2)
                     nav.navigate(Routes.FoodBankLandingPage.route) {
