@@ -1,4 +1,4 @@
-package com.example.leftovers.tests
+package com.example.leftovers
 
 import android.app.Application
 import android.content.Context

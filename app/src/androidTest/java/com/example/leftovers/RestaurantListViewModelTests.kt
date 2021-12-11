@@ -2,14 +2,17 @@ package com.example.leftovers
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.leftovers.data.impl.RestaurantsDatabaseRepository
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 import com.example.leftovers.model.Restaurant
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.*
+import android.app.Application
+
 
 @HiltAndroidTest
 class RestaurantListViewModelTests {
@@ -20,7 +23,7 @@ class RestaurantListViewModelTests {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun TestSelectRestaurant() {
+    fun testSelectRestaurant() {
         composeTestRule.mainClock.autoAdvance = false
 
         composeTestRule.setContent {
