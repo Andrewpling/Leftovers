@@ -12,7 +12,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-//import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth.assertThat
 
 @RunWith(AndroidJUnit4::class)
 class RestaurantsDatabaseTest : TestCase() {
@@ -38,8 +38,8 @@ class RestaurantsDatabaseTest : TestCase() {
         val rest = Restaurant(1, "test rest", "test loc", 2, "test url", true)
         dao.addRestaurant(rest)
         val rests = dao.getRestaurants()
-      //  assertThat(rests.contains(rest)).isTrue()
-        assertEquals(rests, rest)
+        assertThat(rests.contains(rest)).isTrue()
+        //assertEquals(rests, rest)
 
     }
 }
