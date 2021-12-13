@@ -17,6 +17,7 @@ import com.example.leftovers.ui.homescreen.HomeScreenView
 import com.example.leftovers.ui.landingpage.FoodBankLandingPageView
 import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.landingpage.RestaurantLandingPageView
+import com.example.leftovers.ui.profile.BankProfile
 //import com.example.leftovers.ui.landingpage.LandingPageView
 import com.example.leftovers.ui.profile.RestProfile
 import com.example.leftovers.ui.restaurantList.RestaurantListView
@@ -49,6 +50,9 @@ fun LeftoversNavGraph(
         }
         composable(Routes.RestProfile.route){
             RestProfile(vm, ctx)
+        }
+        composable(Routes.BankProfile.route){
+            BankProfile(vm3, ctx)
         }
         composable(Routes.FoodBankLandingPage.route){
             FoodBankLandingPageView(vm2, navController)

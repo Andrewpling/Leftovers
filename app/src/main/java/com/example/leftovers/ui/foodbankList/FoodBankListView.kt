@@ -117,7 +117,7 @@ fun FoodBankListView(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = "Distance: ${bank.distance.toString()}mi",
+                                            text = "Distance: ${bank.distance}mi",
                                             textAlign = TextAlign.Left,
                                             fontSize = 12.sp
                                         )
@@ -164,7 +164,7 @@ fun FoodBankListView(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = "Distance: ${bank.distance.toString()}mi",
+                                            text = "Distance: ${bank.distance}mi",
                                             textAlign = TextAlign.Left,
                                             fontSize = 12.sp
                                         )
