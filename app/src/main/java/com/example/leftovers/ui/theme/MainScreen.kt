@@ -28,6 +28,7 @@ import com.example.leftovers.ui.nav.LeftoversNavGraph
 import com.example.leftovers.ui.nav.Routes
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -58,8 +59,27 @@ fun MainScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable(onClick = {
-                            nav.navigate(Routes.RestaurantList.route) {
-                                popUpTo(Routes.HomeScreen.route)
+                            if (vm.userMode.value == 0) {
+                                nav.navigate(Routes.HomeScreen.route) {
+                                    popUpTo(Routes.HomeScreen.route)
+                                }
+                            }
+                            //restaurant user
+                            else if (vm.userMode.value == 1) {
+                                nav.navigate(Routes.RestaurantLandingPage.route) {
+                                    popUpTo(Routes.RestaurantLandingPage.route)
+                                }
+                            }
+                            //foodbank user
+                            else if (vm.userMode.value == 2) {
+                                nav.navigate(Routes.FoodBankLandingPage.route) {
+                                    popUpTo(Routes.FoodBankLandingPage.route)
+                                }
+                            }
+                            scope.launch {
+                                scaffoldState.drawerState.apply {
+                                    close()
+                                }
                             }
                         })
                         .padding(start = 10.dp)
@@ -88,6 +108,11 @@ fun MainScreen(
                                         popUpTo(Routes.FoodBankLandingPage.route)
                                     }
                                 }
+                                scope.launch {
+                                    scaffoldState.drawerState.apply {
+                                        close()
+                                    }
+                                }
                             }
                             .padding(16.dp)
                     )
@@ -103,7 +128,7 @@ fun MainScreen(
                             //restaurant user
                             //TODO: Change to foodbank list route
                             if(vm.userMode.value == 1) {
-                                nav.navigate(Routes.RestaurantList.route) {
+                                nav.navigate(Routes.FoodBankList.route) {
                                     popUpTo(Routes.RestaurantLandingPage.route)
                                 }
                             }
@@ -112,6 +137,11 @@ fun MainScreen(
                             else if(vm.userMode.value == 2){
                                 nav.navigate(Routes.RestaurantList.route){
                                     popUpTo(Routes.FoodBankLandingPage.route)
+                                }
+                            }
+                            scope.launch {
+                                scaffoldState.drawerState.apply {
+                                    close()
                                 }
                             }
                         })
@@ -128,7 +158,13 @@ fun MainScreen(
                             text = "Food Banks",
                             modifier = Modifier
                                 .clickable {
-                                    nav.navigate(Routes.RestaurantList.route)
+                                    nav.navigate(Routes.FoodBankList.route)
+                                    scope.launch {
+                                        scaffoldState.drawerState.apply {
+                                            delay(250)
+                                            close()
+                                        }
+                                    }
                                 }
                                 .padding(16.dp)
                         )
@@ -145,6 +181,12 @@ fun MainScreen(
                             modifier = Modifier
                                 .clickable {
                                     nav.navigate(Routes.RestaurantList.route)
+                                    scope.launch {
+                                        scaffoldState.drawerState.apply {
+                                            delay(250)
+                                            close()
+                                        }
+                                    }
                                 }
                                 .padding(16.dp)
                         )

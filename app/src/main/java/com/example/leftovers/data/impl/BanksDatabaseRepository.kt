@@ -10,7 +10,7 @@ import com.example.leftovers.model.FoodBank
 import com.example.leftovers.model.Restaurant
 
 class BanksDatabaseRepository (app: Application) : IBankRepository {
-
+    
     private val db: BanksDatabase
 
     init{
@@ -29,6 +29,14 @@ class BanksDatabaseRepository (app: Application) : IBankRepository {
 
     override suspend fun addBank(foodBank: FoodBank) {
         return db.banksDao().addBank(foodBank)
+    }
+
+    override suspend fun getBankUser(): FoodBank {
+        return db.banksDao().getBankUser()
+    }
+
+    override suspend fun updateBank(foodBank: FoodBank) {
+        return db.banksDao().updateBank(foodBank)
     }
 
     override suspend fun toggleBankReady(foodBank: FoodBank) {

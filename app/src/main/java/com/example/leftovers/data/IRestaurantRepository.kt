@@ -7,7 +7,8 @@ interface IRestaurantRepository {
     suspend fun getRestaurants(): List<Restaurant>
     suspend fun addRestaurant(restaurant: Restaurant)
     suspend fun toggleRestaurantReady(restaurant: Restaurant)
-
+    suspend fun updateRestaurant(restaurant: Restaurant)
+    suspend fun getRestUser(): Restaurant
 
     //suspend fun filter(search: String)
 }

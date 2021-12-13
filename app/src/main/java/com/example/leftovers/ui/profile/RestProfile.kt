@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -35,7 +36,7 @@ fun RestProfile(
     val painter = rememberImagePainter(
         data = data,
         builder = {
-            placeholder(R.mipmap.sniper_monkey_foreground)
+            placeholder(R.mipmap.leftovers_logo_foreground)
         }
     )
 
@@ -64,7 +65,6 @@ fun RestProfile(
         ) {
             Button(
                 onClick = {
-                    //Todo: Create message intent functionality
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.setData(Uri.parse("smsto: 12345"))
                     intent.putExtra("sms_body", "What's going on?")
