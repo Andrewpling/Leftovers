@@ -11,15 +11,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.leftovers.ui.foodbankList.FoodBankListView
+import com.example.leftovers.ui.foodbankList.FoodBankListViewModel
 import com.example.leftovers.ui.homescreen.HomeScreenView
 import com.example.leftovers.ui.landingpage.FoodBankLandingPageView
 import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.landingpage.RestaurantLandingPageView
 //import com.example.leftovers.ui.landingpage.LandingPageView
 import com.example.leftovers.ui.profile.RestProfile
-import com.example.leftovers.ui.profile.ProfileViewModel
 import com.example.leftovers.ui.restaurantList.RestaurantListView
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
+import com.example.leftovers.ui.userprofile.BankUser
+import com.example.leftovers.ui.userprofile.RestUser
 
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
@@ -29,6 +32,7 @@ fun LeftoversNavGraph(
 ){
     val vm: RestaurantListViewModel = viewModel()
     val vm2: LandingPageViewModel = viewModel()
+    val vm3: FoodBankListViewModel = viewModel()
     val ctx: Context = LocalContext.current
     NavHost(
         navController = navController,
@@ -40,21 +44,23 @@ fun LeftoversNavGraph(
         composable(Routes.RestaurantList.route) {
             RestaurantListScreen(vm, navController)
         }
+        composable(Routes.FoodBankList.route){
+            FoodBankListScreen(vm3, navController)
+        }
         composable(Routes.RestProfile.route){
-            RestProfile(
-                vm, ctx
-
-//                onAddRestaurant = { restaurant ->
-//                    vm.addRestaurant(restaurant)
-////                    navController.navigate(Routes.RestaurantList.route)
-//                }
-            )
+            RestProfile(vm, ctx)
         }
         composable(Routes.FoodBankLandingPage.route){
             FoodBankLandingPageView(vm2, navController)
         }
         composable(Routes.RestaurantLandingPage.route){
-            RestaurantLandingPageView(vm2, navController)
+            RestaurantLandingPageView(vm2, vm, navController)
+        }
+        composable(Routes.FoodBankUser.route){
+            BankUser(vm3, ctx, navController)
+        }
+        composable(Routes.RestUser.route) {
+            RestUser(vm, ctx, navController)
         }
     }
 }
@@ -72,6 +78,24 @@ fun RestaurantListScreen(
         restaurants,
         isReadyChange = vm::isReady,
         onSelectRest = vm::selectRest,
+        nav
+
+    )
+}
+
+@ExperimentalFoundationApi
+@Composable
+fun FoodBankListScreen(
+    vm: FoodBankListViewModel,
+    nav: NavHostController
+){
+    val foodBanks by vm.foodBanks
+
+    FoodBankListView(
+        vm,
+        foodBanks,
+        isReadyChange = vm::isReady,
+        onSelectBank = vm::selectBank,
         nav
 
     )

@@ -18,9 +18,16 @@ class RestaurantApiComm (
         return db.getRestaurants()
     }
 
-
     override suspend fun addRestaurant(restaurant: Restaurant) {
         db.addRestaurant(restaurant)
+    }
+
+    override suspend fun updateRestaurant(restaurant: Restaurant) {
+        db.updateRestaurant(restaurant)
+    }
+
+    override suspend fun getRestUser(): Restaurant {
+        return db.getRestUser()
     }
 
     override suspend fun toggleRestaurantReady(restaurant: Restaurant) {

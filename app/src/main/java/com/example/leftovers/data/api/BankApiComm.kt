@@ -24,6 +24,14 @@ class BankApiComm (
         db.addBank(foodBank)
     }
 
+    override suspend fun getBankUser(): FoodBank {
+       return db.getBankUser()
+    }
+
+    override suspend fun updateBank(foodBank: FoodBank) {
+        db.updateBank(foodBank)
+    }
+
     override suspend fun toggleBankReady(foodBank: FoodBank) {
         db.toggleBankReady(foodBank)
     }

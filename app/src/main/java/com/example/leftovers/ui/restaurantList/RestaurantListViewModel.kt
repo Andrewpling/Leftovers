@@ -3,14 +3,17 @@ package com.example.leftovers.ui.restaurantList
 import android.app.Application
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.leftovers.data.IRestaurantRepository
 import com.example.leftovers.data.api.RestaurantApiComm
 import com.example.leftovers.data.impl.RestaurantsDatabaseRepository
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.network.FoodFetcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class RestaurantListViewModel(app: Application) : AndroidViewModel(app) {
@@ -20,14 +23,24 @@ class RestaurantListViewModel(app: Application) : AndroidViewModel(app) {
     private val _selectedRest: MutableState<Restaurant?>
     val selectedRest: State<Restaurant?>
 
+    private val _userRest: MutableState<Restaurant?> = mutableStateOf(null)
+    val userRest: State<Restaurant?> = _userRest
+
     private val _repository: IRestaurantRepository = RestaurantApiComm(RestaurantsDatabaseRepository(app), FoodFetcher(app))
 
     init {
         viewModelScope.launch {
             _restaurants.value = _repository.getRestaurants()
+            _userRest.value = _repository.getRestUser()
         }
         _selectedRest = mutableStateOf(null)
         selectedRest = _selectedRest
+
+
+
+
+
+
     }
     fun addRestaurant(restaurant: Restaurant){
         viewModelScope.launch {
@@ -45,6 +58,14 @@ class RestaurantListViewModel(app: Application) : AndroidViewModel(app) {
 
     fun selectRest(restaurant: Restaurant){
         _selectedRest.value = restaurant
+    }
+
+    fun updateRest(restaurant: Restaurant){
+        viewModelScope.launch {
+            _repository.updateRestaurant(restaurant)
+            _restaurants.value = _repository.getRestaurants()
+            _userRest.value = _repository.getRestUser()
+        }
     }
 
 //        fun initializeValues(){
