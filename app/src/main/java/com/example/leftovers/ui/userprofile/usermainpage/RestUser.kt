@@ -12,6 +12,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -37,6 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.leftovers.R
+import com.example.leftovers.model.FoodBank
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.nav.Routes
@@ -56,6 +58,7 @@ fun RestUser(
     nav: NavHostController
 
 ) {
+    val openDialog = remember { mutableStateOf(false) }
     val editFlag = remember { mutableStateOf(false) }
     val newPicUrl = "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg"
     val encodePicUrl = URLEncoder.encode(
@@ -66,7 +69,7 @@ fun RestUser(
     val painter = rememberImagePainter(
         data = vm.userRest.value?.picUrl,
         builder = {
-            placeholder(R.mipmap.sniper_monkey_foreground)
+            placeholder(R.mipmap.leftovers_logo_foreground)
         }
     )
 
@@ -162,33 +165,66 @@ fun RestUser(
         else if(editFlag.value == true){
             Button(
                 onClick = {
-                    vm.updateRest(
-                        Restaurant(
-                            1,
-                            "${name.value}",
-                            "${location.value}",
-                            10,
-                            newPicUrl,
-                            true
-                        )
-                    )
-                    editFlag.value = false
-                    val url =
-                        "https://androidclass.herokuapp.com/?idP=v1&nameP=${name.value}&locationP=${location.value}&distanceP=v4&picURLP=${encodePicUrl}&isAcceptingP=true"
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.setData(Uri.parse(url))
-                    app.startActivity(intent)
-//                    vmName.value = "${vm.userRest.value?.name}"
-//                    vmLocation.value = "${vm.userRest.value?.location}"
-                    nav.navigate(Routes.RestaurantLandingPage.route){
-                        popUpTo(Routes.RestaurantLandingPage.route)
-                    }
-                },
-                modifier = Modifier.padding(16.dp)
+                    openDialog.value = true
+                }
             ) {
                 Text("Submit changes")
             }
+        }
 
+        if(openDialog.value){
+            AlertDialog(
+                onDismissRequest = {},
+                title = {
+                    Text("Confirm Changes")
+                },
+                text = {
+                    Text("Are you sure you want to save your changes?")
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            openDialog.value = false
+                            vm.updateRest(
+                                Restaurant(
+                                    1,
+                                    "${name.value}",
+                                    "${location.value}",
+                                    10,
+                                    newPicUrl,
+                                    true
+                                )
+                            )
+                            editFlag.value = false
+                            val url =
+                                "https://androidclass.herokuapp.com/?idP=v1&nameP=${name.value}&locationP=${location.value}&distanceP=7&picURLP=${encodePicUrl}&isAcceptingP=true"
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.setData(Uri.parse(url))
+                            app.startActivity(intent)
+//                    vmName.value = "${vm.userRest.value?.name}"
+//                    vmLocation.value = "${vm.userRest.value?.location}"
+                            nav.navigate(Routes.RestaurantLandingPage.route) {
+                                popUpTo(Routes.RestaurantLandingPage.route)
+                            }
+                            Toast.makeText(
+                                app,
+                                "Changes saved",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    ){
+                        Text("Yes")
+                    }
+                },
+                dismissButton = {
+                    Button(
+                        onClick = {
+                            openDialog.value = false
+                        }) {
+                        Text("Cancel")
+                    }
+                }
+            )
         }
     } //if ending
 }
