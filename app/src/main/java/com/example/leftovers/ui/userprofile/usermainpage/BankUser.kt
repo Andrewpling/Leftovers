@@ -12,6 +12,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -76,6 +77,7 @@ fun BankUser(
     val location = remember { mutableStateOf("") }
     val vmName = remember { mutableStateOf("${vm.userBank.value?.name}")}
     val vmLocation = remember { mutableStateOf("${vm.userBank.value?.location}")}
+    val openDialog = remember { mutableStateOf(false) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -164,33 +166,94 @@ fun BankUser(
         else if(editFlag.value == true){
             Button(
                 onClick = {
-                    vm.updateBank(
-                        FoodBank(
-                            1,
-                            "${name.value}",
-                            "${location.value}",
-                            10,
-                            newPicUrl,
-                            true
-                        )
-                    )
-                    editFlag.value = false
-                    val url =
-                        "https://androidclass.herokuapp.com/?idP=v1&nameP=${name.value}&locationP=${location.value}&distanceP=v4&picURLP=${encodePicUrl}&isAcceptingP=true"
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.setData(Uri.parse(url))
-                    app.startActivity(intent)
-//                    vmName.value = "${vm.userRest.value?.name}"
-//                    vmLocation.value = "${vm.userRest.value?.location}"
-                    nav.navigate(Routes.FoodBankLandingPage.route){
-                        popUpTo(Routes.FoodBankLandingPage.route)
-                    }
-                },
-                modifier = Modifier.padding(16.dp)
+                   openDialog.value = true
+                }
             ) {
                 Text("Submit changes")
             }
-
         }
-    } //if ending
-}
+
+        if(openDialog.value){
+            AlertDialog(
+                onDismissRequest = {},
+                title = {
+                    Text("Confirm Changes")
+                },
+                text = {
+                    Text("Are you sure you want to save your changes?")
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            openDialog.value = false
+                            vm.updateBank(
+                                FoodBank(
+                                    1,
+                                    "${name.value}",
+                                    "${location.value}",
+                                    10,
+                                    newPicUrl,
+                                    true
+                                )
+                            )
+                            editFlag.value = false
+                            val url =
+                                "https://androidclass.herokuapp.com/?idP=v1&nameP=${name.value}&locationP=${location.value}&distanceP=12&picURLP=${encodePicUrl}&isAcceptingP=true"
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.setData(Uri.parse(url))
+                            app.startActivity(intent)
+//                    vmName.value = "${vm.userRest.value?.name}"
+//                    vmLocation.value = "${vm.userRest.value?.location}"
+                            nav.navigate(Routes.FoodBankLandingPage.route) {
+                                popUpTo(Routes.FoodBankLandingPage.route)
+                            }
+                            Toast.makeText(
+                                app,
+                                "Changes saved",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    ){
+                        Text("Yes")
+                    }
+                },
+                dismissButton = {
+                    Button(
+                        onClick = {
+                            openDialog.value = false
+                        }) {
+                        Text("Cancel")
+                    }
+                }
+            )
+        }
+    }
+//        vm.updateBank(
+//            FoodBank(
+//                1,
+//                "${name.value}",
+//                "${location.value}",
+//                10,
+//                newPicUrl,
+//                true
+//            )
+//        )
+//        editFlag.value = false
+//        val url =
+//            "https://androidclass.herokuapp.com/?idP=v1&nameP=${name.value}&locationP=${location.value}&distanceP=v4&picURLP=${encodePicUrl}&isAcceptingP=true"
+//        val intent = Intent(Intent.ACTION_VIEW)
+//        intent.setData(Uri.parse(url))
+//        app.startActivity(intent)
+////                    vmName.value = "${vm.userRest.value?.name}"
+////                    vmLocation.value = "${vm.userRest.value?.location}"
+//        nav.navigate(Routes.FoodBankLandingPage.route){
+//            popUpTo(Routes.FoodBankLandingPage.route)
+//        }
+//        Toast.makeText(
+//            app,
+//            "Changes saved",
+//            Toast.LENGTH_LONG
+//        ).show()
+//    },
+//    modifier = Modifier.padding(16.dp)
+} //if ending
