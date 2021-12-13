@@ -10,8 +10,8 @@ import com.example.leftovers.model.FoodBank
 import com.example.leftovers.model.Restaurant
 
 class BanksDatabaseRepository (app: Application) : IBankRepository {
-    private val db: BanksDatabase
 
+    private val db: BanksDatabase
 
     init{
         db = Room.databaseBuilder(
@@ -27,7 +27,6 @@ class BanksDatabaseRepository (app: Application) : IBankRepository {
         return db.banksDao().getBanks()
     }
 
-
     override suspend fun addBank(foodBank: FoodBank) {
         return db.banksDao().addBank(foodBank)
     }
@@ -36,6 +35,5 @@ class BanksDatabaseRepository (app: Application) : IBankRepository {
         val newBank = foodBank.copy(isAccepting = !foodBank.isAccepting)
         db.banksDao().updateBank(newBank)
     }
-
 
 }
