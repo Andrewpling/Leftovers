@@ -1,4 +1,4 @@
-package com.example.leftovers.di
+package com.example.leftovers
 
 import android.app.Application
 import com.example.leftovers.data.IBankRepository

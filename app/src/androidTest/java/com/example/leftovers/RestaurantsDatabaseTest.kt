@@ -1,10 +1,12 @@
-package com.example.leftovers.data.db
+package com.example.leftovers
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.leftovers.data.db.RestaurantsDao
+import com.example.leftovers.data.db.RestaurantsDatabase
 import com.example.leftovers.model.Restaurant
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
