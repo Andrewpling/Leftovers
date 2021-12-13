@@ -128,7 +128,7 @@ fun MainScreen(
                             //restaurant user
                             //TODO: Change to foodbank list route
                             if(vm.userMode.value == 1) {
-                                nav.navigate(Routes.RestaurantList.route) {
+                                nav.navigate(Routes.FoodBankList.route) {
                                     popUpTo(Routes.RestaurantLandingPage.route)
                                 }
                             }
@@ -158,7 +158,7 @@ fun MainScreen(
                             text = "Food Banks",
                             modifier = Modifier
                                 .clickable {
-                                    nav.navigate(Routes.RestaurantList.route)
+                                    nav.navigate(Routes.FoodBankList.route)
                                     scope.launch {
                                         scaffoldState.drawerState.apply {
                                             delay(250)

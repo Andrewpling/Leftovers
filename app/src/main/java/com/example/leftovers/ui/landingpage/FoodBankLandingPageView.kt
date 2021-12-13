@@ -34,11 +34,19 @@ fun FoodBankLandingPageView(
 //        else if(vm.userMode.value == 0){
 //            Text("ERROR")
 //        }
-        Image(painter = painterResource(id = R.mipmap.foodforthought_foreground), contentDescription = "Placeholder", modifier = Modifier.size(256.dp))
+        Image(painter = painterResource(id = R.mipmap.foodbank_placeholder_foreground), contentDescription = "Placeholder", modifier = Modifier.size(256.dp))
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically
         ){
-            Text("Welcome, Food for Thought", fontSize = 32.sp, modifier = Modifier.padding(16.dp), textAlign = TextAlign.Center)
+            Text("Welcome, Food Bank User", fontSize = 32.sp, modifier = Modifier.padding(16.dp), textAlign = TextAlign.Center)
+        }
+        Button(
+            onClick = {
+                nav.navigate(Routes.FoodBankUser.route)
+            },
+            modifier = Modifier.padding(16.dp)
+        ){
+            Text("My Profile")
         }
         Button(
             onClick = {

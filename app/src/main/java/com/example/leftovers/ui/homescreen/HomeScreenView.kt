@@ -71,7 +71,7 @@ fun HomeScreenView(
                     //vm.setUserMode("restaurant")
                     vm.setUserMode(1)
                     nav.navigate(Routes.RestaurantLandingPage.route) {
-                        popUpTo(Routes.HomeScreen.route)
+                        popUpTo(Routes.RestaurantLandingPage.route)
                     }
 
                 }
@@ -86,7 +86,7 @@ fun HomeScreenView(
                     //vm.setUserMode("foodBank")
                     vm.setUserMode(2)
                     nav.navigate(Routes.FoodBankLandingPage.route) {
-                        popUpTo(Routes.HomeScreen.route)
+                        popUpTo(Routes.FoodBankLandingPage.route)
                     }
 
                 }

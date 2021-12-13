@@ -1,6 +1,5 @@
 package com.example.leftovers.ui.profile
 
-
 import android.app.Application
 import android.content.Context
 import android.content.Intent
@@ -19,19 +18,20 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import com.example.leftovers.R
 import com.example.leftovers.model.Restaurant
+import com.example.leftovers.ui.foodbankList.FoodBankListViewModel
 import com.example.leftovers.ui.landingpage.LandingPageViewModel
 import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 
 
 @ExperimentalComposeUiApi
 @Composable
-fun RestProfile(
-    vm: RestaurantListViewModel = viewModel(),
+fun BankProfile(
+    vm: FoodBankListViewModel = viewModel(),
     app: Context
 ) {
 
 
-    val data = vm.selectedRest.value?.picUrl
+    val data = vm.selectedBank.value?.picUrl
 
     val painter = rememberImagePainter(
         data = data,
@@ -45,7 +45,7 @@ fun RestProfile(
         modifier = Modifier.fillMaxWidth()
     ){
         Text(
-            text = vm.selectedRest.value?.name.toString(),
+            text = vm.selectedBank.value?.name.toString(),
             modifier = Modifier.padding(16.dp)
         )
         Image(
@@ -56,7 +56,7 @@ fun RestProfile(
             alignment = Alignment.Center
         )
         Text(
-            text = vm.selectedRest.value?.location.toString(),
+            text = vm.selectedBank.value?.location.toString(),
             modifier = Modifier.padding(16.dp)
         )
         Spacer(modifier = Modifier.size(20.dp))

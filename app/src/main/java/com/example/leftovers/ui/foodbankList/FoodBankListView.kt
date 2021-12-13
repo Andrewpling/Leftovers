@@ -1,4 +1,6 @@
-package com.example.leftovers.ui.restaurantList
+package com.example.leftovers.ui.foodbankList
+
+import com.example.leftovers.ui.restaurantList.RestaurantListViewModel
 
 import android.content.res.Configuration
 import android.graphics.Paint
@@ -27,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.leftovers.R
+import com.example.leftovers.model.FoodBank
 import com.example.leftovers.model.Restaurant
 import com.example.leftovers.ui.nav.Routes
 import com.example.leftovers.ui.theme.SecondaryColor
@@ -34,11 +37,11 @@ import com.example.leftovers.ui.theme.SecondaryColor
 
 @ExperimentalFoundationApi
 @Composable
-fun RestaurantListView(
-    vm: RestaurantListViewModel = viewModel(),
-    restaurants: List<Restaurant>,
-    isReadyChange: (Restaurant) -> Unit,
-    onSelectRest: (Restaurant) -> Unit,
+fun FoodBankListView(
+    vm: FoodBankListViewModel = viewModel(),
+    banks: List<FoodBank>,
+    isReadyChange: (FoodBank) -> Unit,
+    onSelectBank: (FoodBank) -> Unit,
     nav: NavHostController
 ) {
     Box(
@@ -56,10 +59,10 @@ fun RestaurantListView(
                     cells = GridCells.Fixed(2),
                     contentPadding = PaddingValues(8.dp),
                     content = {
-                        itemsIndexed(restaurants) { idx, restaurant ->
+                        itemsIndexed(banks) { idx, bank ->
 
                             val painter = rememberImagePainter(
-                                data = restaurant.picUrl,
+                                data = bank.picUrl,
                                 builder = {
                                     placeholder(R.mipmap.leftovers_logo_foreground)
                                 }
@@ -72,7 +75,7 @@ fun RestaurantListView(
 //                                    modifier = Modifier.fillMaxWidth()
 //                                ) {
 //                                    Log.d("TAG", restaurant.name)
-                            if(!restaurant.isAccepting) {
+                            if(!bank.isAccepting) {
                                 Card(
                                     contentColor = Color.Gray,
                                     backgroundColor = Color.Gray,
@@ -97,7 +100,7 @@ fun RestaurantListView(
                                         modifier = Modifier.fillMaxWidth()
                                     ) {
                                         Text(
-                                            text = restaurant.name,
+                                            text = bank.name,
                                             textAlign = TextAlign.Center,
                                             fontSize = 14.sp,
                                             modifier = Modifier.padding(4.dp)
@@ -114,7 +117,7 @@ fun RestaurantListView(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = "Distance: ${restaurant.distance.toString()}mi",
+                                            text = "Distance: ${bank.distance.toString()}mi",
                                             textAlign = TextAlign.Left,
                                             fontSize = 12.sp
                                         )
@@ -135,8 +138,8 @@ fun RestaurantListView(
                                         )
                                         .size(200.dp)
                                         .clickable {
-                                            onSelectRest(restaurant)
-                                            nav.navigate(Routes.RestProfile.route)
+                                            onSelectBank(bank)
+                                            nav.navigate(Routes.BankProfile.route)
                                         }
                                         .fillMaxWidth()
                                 ) {
@@ -145,7 +148,7 @@ fun RestaurantListView(
                                         modifier = Modifier.fillMaxWidth()
                                     ) {
                                         Text(
-                                            text = restaurant.name,
+                                            text = bank.name,
                                             textAlign = TextAlign.Center,
                                             fontSize = 14.sp,
                                             modifier = Modifier.padding(4.dp)
@@ -161,7 +164,7 @@ fun RestaurantListView(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = "Distance: ${restaurant.distance.toString()}mi",
+                                            text = "Distance: ${bank.distance.toString()}mi",
                                             textAlign = TextAlign.Left,
                                             fontSize = 12.sp
                                         )

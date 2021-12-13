@@ -24,6 +24,13 @@ class RestaurantsDatabaseRepository (app: Application) : IRestaurantRepository {
         return db.restaurantDao().getRestaurants()
     }
 
+    override suspend fun getRestUser(): Restaurant {
+        return db.restaurantDao().getRestUser()
+    }
+
+    override suspend fun updateRestaurant(restaurant: Restaurant) {
+        return db.restaurantDao().updateRestaurant(restaurant)
+    }
 
     override suspend fun addRestaurant(restaurant: Restaurant) {
         return db.restaurantDao().addRestaurant(restaurant)
