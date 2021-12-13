@@ -10,6 +10,7 @@ import com.example.leftovers.model.FoodBank
 import com.example.leftovers.model.Restaurant
 
 class BanksDatabaseRepository (app: Application) : IBankRepository {
+    
     private val db: BanksDatabase
 
     init{
